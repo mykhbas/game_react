@@ -182,7 +182,7 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
             color: 'black',
           }}
         >
-          {time>3000||(correctDot[index] > threshold|| clickedStates[index]) ?   '':correctDot[index]}
+          {time>2000||(correctDot[index] > threshold|| clickedStates[index]) ?   '':correctDot[index]}
         </div>
       </Zoom>
     );

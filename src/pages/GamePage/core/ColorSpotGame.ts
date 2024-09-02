@@ -44,11 +44,10 @@ class ColorSpotGame {
         const BASE_SCORE = 100; // Base score for completing a stage
         const LEVEL_WEIGHT = 50; // Weight for each level
         const STAGE_WEIGHT = 20; // Weight for each stage
-        const TIME_WEIGHT = 1; // Decrease score depends on time counter
         const score = (BASE_SCORE
             + (this.currentLevel * LEVEL_WEIGHT)
             + (this.currentStage * STAGE_WEIGHT)
-            - (time * TIME_WEIGHT));
+);
 
         if(this.currentLevel === 1 && this.currentStage === 1){
             return 0
