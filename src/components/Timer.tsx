@@ -4,7 +4,7 @@ import { useMemo } from "react";
 const Timer: React.FC<{time: number}> = ({ time }) => {
     const progress = useMemo(() => {
         const seconds = Math.floor((time % 60000) / 1000);
-        let x = (3 % 60) * (100 / 60)
+        let x = (2 % 60) * (100 / 60)
         if (seconds < 3){
             x = (seconds % 60) * (100 / 60);
         }
@@ -29,7 +29,7 @@ const Timer: React.FC<{time: number}> = ({ time }) => {
                 
                 <CircularProgress
                     variant="determinate"
-                    value={progress*20}
+                    value={progress*30}
                     size={100}
                     thickness={4}
                     style={{ position: 'absolute', top: 0, left: 0 , zIndex: 3}}
