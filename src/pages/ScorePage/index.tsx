@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import ChannelDropdown, { FIRST_OPTION_VALUE_DROPDOWN } from "../../components/ChannelDropdown"
 import { getAllListChannel, getScoreByAppName } from "../../api/appScore"
 import { useMain } from "../../contexts/MainContext"
+import BackgroundMusic from "../../components/BackgroundMusic"
 
 interface IScoreList{[key: string]: number}
 
@@ -50,28 +51,62 @@ export default function ScorePage(){
     }
 
     return(
-        <Box>
-            <Grid container>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                    <Typography variant="h1">
+        <Box
+            // sx={{
+            // background: 'green',// Change this to your desired background color
+            // padding: 'px'
+        >
+            {/* แก้ */}
+            <Grid container> 
+                <Grid item xl={12} lg={12} md={12} sm={12} xs={12}
+                >
+                    <Typography variant="h1"
+                    style={{
+                        color: '#4e342e',
+                        fontWeight: 'bold',
+                        fontFamily: 'monospace',
+                        textTransform: 'uppercase',
+                        fontSize: '75px',
+                    }}
+                    >
                         Scoreboard
                     </Typography>
                 </Grid>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} p={1}>
+                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} p={1}
+                    style={{
+                        background: 'white',
+                        borderRadius: '10px',
+                        marginBottom: '10px',
+                    }}
+                >
                     <ChannelDropdown
                         appNameLists={appNameLists}
                         channelName={channelId || ""}
                         onChange={(val) => onSelectChannel(val)}
                     />
                 </Grid>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                <Grid item xl={12} lg={12} md={12} sm={12} xs={12}
+                    style={{
+                        backgroundColor: 'white',
+                        borderRadius: '10px',
+                    }}
+                >
                     <DataTable
                         data={scoreList}
+                        
                     />
                 </Grid>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} p={1}>
                     <Button
                         variant="contained"
+                        style={{
+                            background:'#ffd54f',
+                            color:'brown',
+                            fontSize: '20px',
+                            fontWeight: 'bold',
+                            marginTop: '10px'
+
+                        }}
                         onClick={() => {
                             navigate('/')
                         }}

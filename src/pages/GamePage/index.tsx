@@ -1,12 +1,13 @@
 import { Box, Grid, Typography, } from "@mui/material"
 import { useMain } from "../../contexts/MainContext"
 import { useEffect, useState } from "react"
-import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
-import SearchIcon from '@mui/icons-material/Search';
+// import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
+// import SearchIcon from '@mui/icons-material/Search';
 import GamLogo from '../../assets/game-logo.png';
 import Game from "./GameLogic";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Eating from '../../assets/eating.png';
 
 const FlashingText = ({ begin, second, third, last, text } : {begin : string, second: string, third:string, last : string, text : string}) => {
     return (
@@ -31,7 +32,7 @@ const FlashingText = ({ begin, second, third, last, text } : {begin : string, se
   };
 
 const GamePage = () => {
-    const {scoreList,user} = useMain();
+    const {scoreList,user, channel} = useMain();
     const [ highestScore, setHighestScore] = useState<number>(0)
     const navigate = useNavigate()
     //  TO DO: Create new state
@@ -72,7 +73,7 @@ const GamePage = () => {
                 <Grid item xs={12}>
                     <Box
                         sx={{
-                            backgroundColor: '#1E1E1E',
+                            backgroundColor: '#FFC300',
                             borderRadius: 3,
                             padding: 2,
                             display: 'flex',
@@ -83,15 +84,20 @@ const GamePage = () => {
                             alignItems: 'center',
                             gap: 1
                         }}>
-                        <VideogameAssetIcon color="warning" sx={{ fontSize: 40 }} />
+                        {/* <VideogameAssetIcon color="warning" sx={{ fontSize: 40 }} /> */}
+                        <Box component="img" sx={{
+                            height: 60
+                        }} src={Eating}></Box>
                         <Box sx={{
                             display: 'flex'
                         }}>
-                            <FlashingText begin="#D81E5B" second="#1876d2" third="#53b5a0" last="#FFC300" text="HUE" />
+                            <FlashingText begin="#1a027e" second="#01579b" third="#006064" last="#001d40" text="Transfrom" />
                         </Box>
 
-                        <Typography sx={{ fontSize: 32 }} fontWeight={'bold'} color={'#00B140'}>Hunter</Typography>
-                        <SearchIcon color="secondary" sx={{ fontSize: 40, color: '#FFC300' }} />
+                        
+                        <Typography sx={{ fontSize: 25 }} fontWeight={'bold'} color={'#513b1c'}>Monkey</Typography>
+
+                        {/* <SearchIcon color="secondary" sx={{ fontSize: 40, color: 'black' }} /> */}
                     </Box>
                 </Grid>
                 <Grid item xs={6} sm={8}>
@@ -102,7 +108,7 @@ const GamePage = () => {
                     sx={{
                         width: '100%',
                         height: 'auto',
-                        backgroundColor: '#1E1E1E',
+                        backgroundColor: '#FFC300',
                         borderRadius: 3,
                         padding: 2,
                         display: 'flex',
@@ -114,9 +120,17 @@ const GamePage = () => {
                     {/* Header */}
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         {/*TO DO: Show player name */}
-                        <Typography sx={{ color: '#fff', fontSize: 14 }}>Player : {user}</Typography>
+                        <Typography sx={{ color: '#fff', fontSize: 15, }}
+                            style={{
+                                color: 'black'
+                            }}
+                        >Player : {user}</Typography>
                         {/*TO DO: Show channel name */}
-
+                        <Typography sx={{ color: '#fff', fontSize: 15, }}
+                            style={{
+                                color: 'black'
+                            }}
+                        >Channel : {channel}</Typography>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         {/*TO DO: Show active player count */}

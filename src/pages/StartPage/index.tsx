@@ -111,7 +111,7 @@ const StartPage = () => {
                             }else{
                                 alert("Please input channel name")
                             }
-                            }}>create new channel</Button>
+                            }}>Create new channel</Button>
                     </Grid>
 
                 </Grid>

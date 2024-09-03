@@ -143,7 +143,15 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
         <div>
           <h2>{gameFinished ? 'Congratulation You have Completed All Levels' : `Game Over! You reached only stage ${currentStage} of level ${currentLevel}`}</h2>
           <h3>Score : {finalScore}</h3>
-          <button onClick={restartGame}>Restart</button>
+          <button onClick={restartGame}
+            style={{
+              backgroundColor:'#9aa090',
+              color: 'white',
+              fontSize: '20px',
+              fontWeight: 'bold',
+              textTransform: 'uppercase'
+            }}
+          >Restart</button>
           <br />
           <br />
           <ScoreboardButton
@@ -160,7 +168,7 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
     display: 'grid', 
     gridTemplateColumns: `repeat(${Math.sqrt(dots.length)}, 50px)`, 
     gap: '10px', 
-    justifyContent: 'center' 
+    justifyContent: 'center',
   }}
 >
   {dots.map((color, index) => {
@@ -168,19 +176,23 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
     const threshold = Math.floor(correctDot.length / 2) + 1;
     const isHidden = correctDot[index] > threshold;
 
-    return (
+    return ( //แก้
       <Zoom in={true} key={index}>
         <div
           onClick={() => handleDotClick(index)}
           style={{
             width: '50px',
             height: '50px',
-            backgroundColor: isHidden || clickedStates[index]? 'transparent' : color,
+            borderRadius: '10px',
+            backgroundColor: isHidden || clickedStates[index]? 'transparent' : '#4e342e',
             cursor: 'pointer',
-            border: isHidden || clickedStates[index] ? 'none' : '1px solid black',
+            border: isHidden || clickedStates[index] ? 'none' : '1px solid white',
             textAlign: 'center',
             fontSize: '24px',
-            color: 'black',
+            color: 'white',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           {time>2000||(correctDot[index] > threshold|| clickedStates[index]) ?   '':correctDot[index]}

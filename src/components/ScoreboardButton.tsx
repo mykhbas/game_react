@@ -7,7 +7,12 @@ export default function ScoreboardButton({
     onScoreboardClick: () => void
 }){
     return(
-        <Button variant="contained" onClick={onScoreboardClick}>
+        <Button variant="contained" onClick={onScoreboardClick}
+        style={{
+            background:'#9ccc65',
+            fontSize: '20px',
+            fontWeight: 'bold',
+        }}>
             Scoreboard
         </Button>
     )
