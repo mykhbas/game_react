@@ -12,7 +12,13 @@ const Timer: React.FC<{time: number}> = ({ time }) => {
 
         return x
     },[time])
+    const formatTime = (time: number) => {
+        const minutes = Math.floor(time / 60000);
+        const seconds = Math.floor((time % 60000) / 1000);
+        const milliseconds = time % 1000;
 
+        return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(3, '0')}`;
+    };
     
 
     return (
@@ -24,7 +30,7 @@ const Timer: React.FC<{time: number}> = ({ time }) => {
                     value={100}
                     size={100}
                     thickness={4}
-                    style={{ color: '#f0f0f0', zIndex: 1,}}
+                    style={{ color: '#f0f0f0', }}
                 />
                 
                 <CircularProgress
@@ -32,11 +38,15 @@ const Timer: React.FC<{time: number}> = ({ time }) => {
                     value={progress*30}
                     size={100}
                     thickness={4}
-                    style={{ position: 'absolute', top: 0, left: 0 , zIndex: 3}}
+                    style={{ position: 'absolute', top: 0, left: 0 ,color: time > 2000 ? 'green' : 'blue',}}
                 />
                 
 
-                
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                    <div style={{ fontSize: '24px', fontWeight: 'bold' }}>
+                        {formatTime(time)}
+                    </div>
+                </div>
             </div>
         </div>
     );
