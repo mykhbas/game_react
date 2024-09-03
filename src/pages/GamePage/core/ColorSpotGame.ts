@@ -42,7 +42,7 @@ class ColorSpotGame {
 
     getScore(time: number): number {
         const BASE_SCORE = 100; // Base score for completing a stage
-        const LEVEL_WEIGHT = 50; // Weight for each level
+        const LEVEL_WEIGHT = 100; // Weight for each level
         const STAGE_WEIGHT = 20; // Weight for each stage
         const score = (BASE_SCORE
             + (this.currentLevel * LEVEL_WEIGHT)
