@@ -68,7 +68,8 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
       setCorrectDot(newResultIdx)
       resetTimer();
       startTimer();
-      setClickedStates([false,false,false,false]);
+      setClickedStates((prev)=>new Array(prev.length).fill(false));
+
 
 
     } else {

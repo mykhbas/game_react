@@ -37,10 +37,10 @@ const GamePage = () => {
     //  TO DO: Create new state
     // Create state for contain highest score (int)
     // Create constant for contain level
-    const level = 5
+    const level = 10
     
     // Create constant for contain stage
-    const stage = 5
+    const stage = 3
 
 
     useEffect(() => {
