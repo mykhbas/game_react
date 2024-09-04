@@ -9,6 +9,7 @@ import Timer from '../../components/Timer';
 import useTimer from '../../hooks/useTimer';
 import BackgroundMusic from '../../components/BackgroundMusic';
 import { submitScore } from '../../api/appScore'
+import { Score } from '@mui/icons-material';
 
 interface IGameProps {
   onSubmitScores : (score : number) => void
@@ -29,7 +30,7 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
   const [correctDot, setCorrectDot] = useState<number[]>([]);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [clickedStates, setClickedStates] = useState<boolean[]>(new Array(dots.length).fill(false));
-
+  const [score, setScore] = useState<number>(0);
   const currentStage = useMemo(() => {
     return game.getCurrentStage();
   }, [game.getCurrentStage()]);
@@ -69,6 +70,7 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
       resetTimer();
       startTimer();
       setClickedStates((prev)=>new Array(prev.length).fill(false));
+      setScore(game.getScore(Math.floor((time % 60000) / 1000)));
 
 
 
@@ -80,6 +82,7 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
       stopTimer();
       onSubmitScores(score);
       setNub(0)
+      setScore(0)
       setClickedStates((prev)=>new Array(prev.length).fill(false));
       submitScoreToServer(score)    }
   }, [game, time, setGameOver, submitScoreToServer, setGameFinished, stopTimer, onSubmitScores,nub]);
@@ -126,6 +129,8 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
     resetTimer();
     startTimer();
     setNub(0)
+    setScore(0)
+
     setClickedStates(new Array(dots.length).fill(false));
 
   }, [resetGame, setDots, setCorrectDot, setGameOver, setGameFinished, startTimer, resetTimer, levels, stages])
@@ -136,9 +141,7 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <Timer time={time} />
       <BackgroundMusic songUrl={bgSong} />
-      <h1>Level {currentLevel}</h1>
       {gameOver || gameFinished ? (
         <div>
           <h2>{gameFinished ? 'Congratulation You have Completed All Levels' : `Game Over! You reached only stage ${currentStage} of level ${currentLevel}`}</h2>
@@ -162,13 +165,32 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
         </div>
       ) : (
         <>
-          <h2>Stage {currentStage}</h2>
-          <div
+          <div style={{
+      display: 'flex',
+      alignItems: 'center', // จัดแนวแนวตั้งให้องค์ประกอบอยู่กลาง
+      justifyContent: 'space-between', // จัดให้แต่ละส่วนกระจายออกจากกัน
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <Timer time={time} />
+        
+      </div>
+      <div style={{ textAlign: 'center' }}>
+      <h2>Score: {score}</h2>
+      </div>
+      <div style={{ textAlign: 'right' }}>
+        <h2>Level {currentLevel}</h2>
+        <h2>Stage {currentStage}</h2>
+      </div>
+    </div>
+
+  <div
   style={{ 
     display: 'grid', 
-    gridTemplateColumns: `repeat(${Math.sqrt(dots.length)}, 50px)`, 
+    gridTemplateColumns: `repeat(${Math.sqrt(dots.length)}, 80px)`, 
     gap: '10px', 
     justifyContent: 'center',
+     width: '100%', // ทำให้กริดขยายเต็มความกว้างของ container
+    height: '100%',
   }}
 >
   {dots.map((color, index) => {
@@ -181,8 +203,8 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
         <div
           onClick={() => handleDotClick(index)}
           style={{
-            width: '50px',
-            height: '50px',
+            width: '80px',
+            height: '80px',
             borderRadius: '10px',
             backgroundColor: isHidden || clickedStates[index]? 'transparent' : '#4e342e',
             cursor: 'pointer',

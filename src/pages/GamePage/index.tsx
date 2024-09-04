@@ -1,72 +1,56 @@
-import { Box, Grid, Typography, } from "@mui/material"
-import { useMain } from "../../contexts/MainContext"
-import { useEffect, useState } from "react"
-// import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
-// import SearchIcon from '@mui/icons-material/Search';
+import { Box, Grid, Typography } from "@mui/material";
+import { useMain } from "../../contexts/MainContext";
+import { useEffect, useState } from "react";
 import GamLogo from '../../assets/game-logo.png';
 import Game from "./GameLogic";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Eating from '../../assets/eating.png';
+import { Score } from "@mui/icons-material";
 
-const FlashingText = ({ begin, second, third, last, text } : {begin : string, second: string, third:string, last : string, text : string}) => {
+const FlashingText = ({ begin, second, third, last, text }: { begin: string, second: string, third: string, last: string, text: string }) => {
     return (
-      <Box>
-        <Typography
-          sx={{
-            fontSize: 32,
-            fontWeight: 'bold',
-            animation: 'flash 2s infinite',
-            '@keyframes flash': {
-             '0%': { color: begin },  // Start with first color
-            '33%': { color: second }, // Change to second color
-            '66%': { color: third },   // Change to third color
-            '100%': { color: last }  // Back to the first color
-            }
-          }}
-        >
-          {text}
-        </Typography>
-      </Box>
+        <Box>
+            <Typography
+                sx={{
+                    fontSize: 32,
+                    fontWeight: 'bold',
+                    animation: 'flash 2s infinite',
+                    '@keyframes flash': {
+                        '0%': { color: begin },
+                        '33%': { color: second },
+                        '66%': { color: third },
+                        '100%': { color: last }
+                    }
+                }}
+            >
+                {text}
+            </Typography>
+        </Box>
     );
-  };
+};
 
 const GamePage = () => {
-    const {scoreList,user, channel} = useMain();
-    const [ highestScore, setHighestScore] = useState<number>(0)
-    const navigate = useNavigate()
-    //  TO DO: Create new state
-    // Create state for contain highest score (int)
-    // Create constant for contain level
-    const level = 10
-    
-    // Create constant for contain stage
-    const stage = 3
-
-
+    const { scoreList, user, channel } = useMain();
+    const [highestScore, setHighestScore] = useState<number>(0);
+    const navigate = useNavigate();
+    const level = 10;
+    const stage = 3;
     useEffect(() => {
-        // TO DO:
-        //when render page
-        // if user is null
-        // redirect to home page.
-        if(!user){
-            navigate('/')
+        if (!user) {
+            navigate('/');
         }
-    }, [user, navigate])
+    }, [user, navigate]);
 
     useEffect(() => {
-        // TO DO:
-        // Show toast to notify a highest score (now) to user
-        if(scoreList) {
-            // toast('update score' + `${scoreList}`);
+        if (scoreList) {
             const scores = Object.values(scoreList);
             const maxValue = Math.max(...scores);
-            if(maxValue > highestScore) {
+            if (maxValue > highestScore) {
                 toast(`The highest score is now ${maxValue}`);
             }
         }
-    },[scoreList, highestScore])
-
+    }, [scoreList, highestScore]);
     return (
         <Box>
             <Grid container>
@@ -84,26 +68,13 @@ const GamePage = () => {
                             alignItems: 'center',
                             gap: 1
                         }}>
-                        {/* <VideogameAssetIcon color="warning" sx={{ fontSize: 40 }} /> */}
-                        <Box component="img" sx={{
-                            height: 60
-                        }} src={Eating}></Box>
-                        <Box sx={{
-                            display: 'flex'
-                        }}>
-                            <FlashingText begin="#1a027e" second="#01579b" third="#006064" last="#001d40" text="Transfrom" />
+                        <Box component="img" sx={{ height: 60 }} src={Eating}></Box>
+                        <Box sx={{ display: 'flex' }}>
+                            <FlashingText begin="#1a027e" second="#01579b" third="#006064" last="#001d40" text="Transform" />
                         </Box>
-
-                        
                         <Typography sx={{ fontSize: 25 }} fontWeight={'bold'} color={'#513b1c'}>Monkey</Typography>
-
-                        {/* <SearchIcon color="secondary" sx={{ fontSize: 40, color: 'black' }} /> */}
                     </Box>
                 </Grid>
-                <Grid item xs={6} sm={8}>
-
-                </Grid>
-
                 <Box
                     sx={{
                         width: '100%',
@@ -112,28 +83,21 @@ const GamePage = () => {
                         borderRadius: 3,
                         padding: 2,
                         display: 'flex',
-                        flexDirection: 'column',
+                        flexDirection: 'row', // Set to row to make elements horizontal
                         justifyContent: 'space-between',
                         boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',
+                        alignItems: 'top',
+                        
                     }}
                 >
-                    {/* Header */}
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        {/*TO DO: Show player name */}
-                        <Typography sx={{ color: '#fff', fontSize: 15, }}
-                            style={{
-                                color: 'black'
-                            }}
-                        >Player : {user}</Typography>
-                        {/*TO DO: Show channel name */}
-                        <Typography sx={{ color: '#fff', fontSize: 15, }}
-                            style={{
-                                color: 'black'
-                            }}
-                        >Channel : {channel}</Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        {/*TO DO: Show active player count */}
+                    {/* left */}
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginRight: 2 ,marginTop:5}}>
+                        <Box component="img" sx={{ height: 100 }} src={GamLogo}></Box>
+                        
+                        <Typography sx={{ color: 'black', fontSize: 15 }}>Player: {user}</Typography>
+                        <Typography sx={{ color: 'black', fontSize: 15 }}>Channel: {channel}</Typography>
+                        {/* <h2>score : {Game.get}</h2> */}
+                        
                     </Box>
 
                     {/* Game content */}
@@ -144,40 +108,20 @@ const GamePage = () => {
                             borderRadius: 2,
                             marginY: 2,
                             padding: '24px',
-                            
+                            marginX: 2,
                         }}
                     >
-                        {/*TO DO: Render Game component */}
-                        <Game levels={level} stages={stage} onSubmitScores={(score)=>{
-                            if(score > highestScore){
-                                setHighestScore(score)
+                        <Game levels={level} stages={stage} onSubmitScores={(score) => {
+                            if (score > highestScore) {
+                                setHighestScore(score);
                             }
                         }} />
                     </Box>
 
-                    {/* Footer */}
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
-                            
-                        }}
-                    >
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                            {/*TO DO: Show total level number */}
-                        </Box>
-                        <Box component="img" sx={{
-                            height: 72
-                        }} src={GamLogo}></Box>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                            {/*TO DO: Show highest score */}
-                        </Box>
-                    </Box>
                 </Box>
             </Grid>
         </Box>
-    )
-}
+    );
+};
 
-export default GamePage
+export default GamePage;
