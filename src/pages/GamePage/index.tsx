@@ -94,8 +94,8 @@ const GamePage = () => {
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginRight: 2 ,marginTop:5}}>
                         <Box component="img" sx={{ height: 100 }} src={GamLogo}></Box>
                         
-                        <Typography sx={{ color: 'black', fontSize: 15 }}>Player: {user}</Typography>
-                        <Typography sx={{ color: 'black', fontSize: 15 }}>Channel: {channel}</Typography>
+                        <Typography sx={{ color: 'black', fontSize: 20, marginTop: 3 }}>Player: {user}</Typography>
+                        <Typography sx={{ color: 'black', fontSize: 20 }}>Channel: {channel}</Typography>
                         {/* <h2>score : {Game.get}</h2> */}
                         
                     </Box>

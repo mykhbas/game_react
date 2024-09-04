@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, Grid, TextField, Typography } from "@mui/material"
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 import { useState } from "react"
 import { useMain } from "../../contexts/MainContext"
 import Logo from '../../assets/full-logo.png';
@@ -7,10 +7,14 @@ import ChannelDropdown from "../../components/ChannelDropdown";
 import { FIRST_OPTION_VALUE_DROPDOWN } from './../../components/ChannelDropdown';
 import { getAllListChannel } from "../../api/appScore";
 import { useNavigate } from "react-router-dom";
+import BackgroundMusic from "../../components/BackgroundMusic";
 const StartPage = () => {
     const { setUser,setChannel,joinGame} = useMain()
     const navigate = useNavigate()
-
+    // const [startPage, setStartPage] = useState<boolean>(false)
+    const bgSong = useMemo(() => {
+                return 'https://youtu.be/fmHOqoDeiDg?si=aG2wKTBpd5XH09Ki'
+    },[])
 
     useEffect(() => {
         // TO DO.
@@ -28,6 +32,7 @@ const StartPage = () => {
         }
         GetAllListsChannel()
 
+        
         // When page is rendered.
         // Call getAllListChannel() for get all channel list.
         // And save those to state
@@ -65,6 +70,7 @@ const StartPage = () => {
     }, [playerName])
     return (
         <Box>
+          <BackgroundMusic songUrl={bgSong} />
             <Grid container>
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
                     <Box component="img" sx={{

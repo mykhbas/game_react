@@ -41,11 +41,11 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
 
   const bgSong = useMemo(() => {
     if (gameFinished) {
-      return 'https://www.youtube.com/watch?v=OCOeCrpRNGA';
+      return 'https://youtu.be/uKFOv8resL8?si=TyRVIeWi3HV3WVtu';
     } else if (gameOver) {
-      return 'https://www.youtube.com/watch?v=Hs7dYjkagxk';
+      return 'https://youtu.be/atdnjOZhKII?si=vHdJfQw1vDxzg55Y';
     }
-    return 'https://www.youtube.com/watch?v=BS5Q6cZMIM8';
+    return 'https://youtu.be/2DA_MeIw-w8?si=diQHcP6bFAQsHFd3';
   }, [gameOver, gameFinished])
 
   const submitScoreToServer = useCallback(async (score:number) => {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Box, Button, Grid, Typography } from "@mui/material"
 import DataTable from "./Table"
 import { useNavigate } from "react-router-dom"
@@ -15,6 +15,9 @@ export default function ScorePage(){
     const [appNameLists, setAppNameLists] = useState<string[]>([])
     const [channelId, setChannelId] = useState<string | null>(FIRST_OPTION_VALUE_DROPDOWN)
     const [scoreList, setScoreList] = useState<IScoreList>({})
+    const bgSong = useMemo(() => {
+        return 'https://youtu.be/HQClbjhAugg?si=GXPV2s7wqHfV3gfL'
+    },[])
 
     useEffect(() => {
         async function GetAllListChannel() {
@@ -57,6 +60,7 @@ export default function ScorePage(){
             // padding: 'px'
         >
             {/* แก้ */}
+            <BackgroundMusic songUrl={bgSong} />
             <Grid container> 
                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12}
                 >
