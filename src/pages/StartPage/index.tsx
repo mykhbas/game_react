@@ -72,11 +72,9 @@ const StartPage = () => {
     return (
         <Box  >
             <BackgroundMusic songUrl={bgSong} />
-            <Grid container>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                    <Box component="img" sx={{
-                        // height: 108
-                    }} src={Logo}></Box>
+            <Grid container justifyContent={"center"}>
+                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} sx={{ marginBottom: '0px' }}>
+                    <Box component="img"  src={Logo} sx={{marginTop: '0px'}}></Box>
                 </Grid>
                 <Grid container item xl={12} lg={12} md={12} sm={12} xs={12} p={2} justifyContent="center">
                     {/*<Typography variant="h1"
@@ -95,17 +93,17 @@ const StartPage = () => {
                     <svg width="500" height="150" viewBox="0 0 500 200">
                         <defs>
 
-                            <path id="halfCircle" d="M 50, 200 A 280, 200 0 0, 1 450, 200" />
+                            <path id="halfCircle" d="M 50, 190 A 180, 115 0 0, 1 450, 200" />
                         </defs>
-                        <text fill="#0d5302" fontSize="45" fontWeight="bold" fontFamily="monospace">
+                        <text fill="#0d5320" fontSize="45" fontWeight="bold" fontFamily="monospace">
 
-                            <textPath href="#halfCircle" startOffset="50%" textAnchor="middle" dy={-30}>
+                            <textPath href="#halfCircle" startOffset="50%" textAnchor="middle">
                                 Select Channel
                             </textPath>
                         </text>
                     </svg>
 
-                    <Grid sx={{ backgroundColor: '#f0f0f0', p: 5 ,borderRadius: '40px'}} >
+                    <Grid sx={{ backgroundColor: '#fff', p: 5 ,borderRadius: '40px'}} >
                         {/*TO DO: Create dropdown for show channel list */}
                         <ChannelDropdown
                             appNameLists={appNameLists}
