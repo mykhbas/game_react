@@ -16,7 +16,7 @@ const StartPage = () => {
     const bgSong = useMemo(() => {
         return 'https://youtu.be/fmHOqoDeiDg?si=aG2wKTBpd5XH09Ki'
     }, [])
-
+    
     useEffect(() => {
         // TO DO.
         const GetAllListsChannel = async () => {
@@ -66,9 +66,6 @@ const StartPage = () => {
         // Alert warning message.
     }
 
-    useEffect(() => {
-        console.log(playerName)
-    }, [playerName])
     return (
         <Box  >
             <BackgroundMusic songUrl={bgSong} />

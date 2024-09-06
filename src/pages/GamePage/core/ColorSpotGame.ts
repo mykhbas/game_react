@@ -21,6 +21,7 @@ class ColorSpotGame {
             if (!randomIndex.includes(randomNum)) {
                 randomIndex.push(randomNum);
             }
+            
         }
         console.log(randomIndex,gridSize)
         return {

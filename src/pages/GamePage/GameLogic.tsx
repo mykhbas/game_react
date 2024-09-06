@@ -95,9 +95,9 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
     });
   console.log('nub: ', nub + 1);
   console.log('index: ', index);
-  console.log('correctDot: ', Math.floor(correctDot.length / 2) + 1);
-  console.log('clickedStates: ', clickedStates);
-  if (nub + 1 === correctDot.length || nub + 1 === Math.floor(correctDot.length / 2) + 1) {
+  console.log('correct: ', correctDot[index] );
+
+  if (correctDot[index] === nub + 1 && (nub + 1 === correctDot.length || nub + 1 === Math.floor(correctDot.length / 2) + 1)) {
     setNub(0);
     handleNextStage();
   } else if (correctDot[index] === nub + 1) {
@@ -195,7 +195,10 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
 >
   {dots.map((color, index) => {
     // Define the threshold for hiding background and border
-    const threshold = Math.floor(correctDot.length / 2) + 1;
+    let threshold = Math.floor(correctDot.length / 2) + 1;
+    if (game.getCurrentLevel() > 2 ){
+      threshold = threshold +game.getCurrentLevel()-2;
+    }
     const isHidden = correctDot[index] > threshold;
 
     return ( //แก้
@@ -217,7 +220,10 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
             alignItems: 'center',
           }}
         >
-          {time>2000||(correctDot[index] > threshold|| clickedStates[index]) ?   '':correctDot[index]}
+          {/* {correctDot[index]  > Math.floor(correctDot.length / 2) + 1 ? <img src='../../assets/bomb.png' alt="bomb_image"></img> : (time > 2000 || (correctDot[index] > threshold || clickedStates[index]) ? '' : correctDot[index])} */}
+          { time > 200000 || (correctDot[index] > threshold || clickedStates[index]) ?  "": (correctDot[index]  > Math.floor(correctDot.length / 2) + 1 ? <img src='src\assets\bomb.png' alt="bomb_image" width="50px"></img> : correctDot[index] )}
+
+
         </div>
       </Zoom>
     );
