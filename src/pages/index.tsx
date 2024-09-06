@@ -73,7 +73,7 @@ const MainPage = () => {
     const getBackgroundColor = () => {
         switch (location.pathname) {
             case '/':
-                return '#c5d6ba';
+                return '#f5eed8';
             case '/game':
                 return '#44140c';
             case '/score':
