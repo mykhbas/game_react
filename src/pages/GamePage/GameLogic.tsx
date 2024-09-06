@@ -222,7 +222,7 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
           }}
         >
           {/* {correctDot[index]  > Math.floor(correctDot.length / 2) + 1 ? <img src='../../assets/bomb.png' alt="bomb_image"></img> : (time > 2000 || (correctDot[index] > threshold || clickedStates[index]) ? '' : correctDot[index])} */}
-          { time > 2000 || (correctDot[index] > threshold || clickedStates[index]) ?  "": (correctDot[index]  > Math.floor(correctDot.length / 2) + 1 ? <img src='src\assets\bomb.png' alt="bomb_image" width="50px"></img> : correctDot[index] )}
+          { time > 2000 || (correctDot[index] > threshold || clickedStates[index]) ?  (correctDot[index] > threshold || clickedStates[index]) ?  "": <img src='src\assets\bomb.png' alt="bomb_image" width="50px"></img>: (correctDot[index]  > Math.floor(correctDot.length / 2) + 1 ? <img src='src\assets\bomb.png' alt="bomb_image" width="50px"></img> : correctDot[index] )}
 
 
         </div>
