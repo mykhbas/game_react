@@ -96,6 +96,7 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
   console.log('nub: ', nub + 1);
   console.log('index: ', index);
   console.log('correct: ', correctDot[index] );
+  console.log('ans: ', correctDot );
 
   if (correctDot[index] === nub + 1 && (nub + 1 === correctDot.length || nub + 1 === Math.floor(correctDot.length / 2) + 1)) {
     setNub(0);
@@ -196,7 +197,7 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
   {dots.map((color, index) => {
     // Define the threshold for hiding background and border
     let threshold = Math.floor(correctDot.length / 2) + 1;
-    if (game.getCurrentLevel() > 2 ){
+    if (game.getCurrentLevel() > 5 ){
       threshold = threshold +game.getCurrentLevel()-2;
     }
     const isHidden = correctDot[index] > threshold;
