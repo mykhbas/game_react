@@ -98,7 +98,7 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
   console.log('correct: ', correctDot[index] );
   console.log('ans: ', correctDot );
 
-  if (correctDot[index] === nub + 1 && (nub + 1 === correctDot.length || nub + 1 === Math.floor(correctDot.length / 2) + 1)) {
+  if (correctDot[index] === nub + 1 && (nub + 1 === correctDot.length || nub + 1 === Math.floor(game.getCurrentLevel()*2 -Math.floor(game.getCurrentLevel()**0.5)+1))) {
     setNub(0);
     handleNextStage();
   } else if (correctDot[index] === nub + 1) {
@@ -190,13 +190,13 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
     gridTemplateColumns: `repeat(${Math.sqrt(dots.length)}, 80px)`, 
     gap: '10px', 
     justifyContent: 'center',
-     width: '100%', // ทำให้กริดขยายเต็มความกว้างของ container
+     width: '100%', 
     height: '100%',
   }}
 >
   {dots.map((color, index) => {
     // Define the threshold for hiding background and border
-    let threshold = Math.floor(correctDot.length / 2) + 1;
+    let threshold = Math.floor(game.getCurrentLevel()*2 -Math.floor(game.getCurrentLevel()**0.5)+1)  ;
     if (game.getCurrentLevel() > 2 ){
       threshold = threshold +game.getCurrentLevel()-2;
     }
@@ -221,8 +221,8 @@ const Game: React.FC<IGameProps> = (props : IGameProps) => {
             alignItems: 'center',
           }}
         >
-          {/* {correctDot[index]  > Math.floor(correctDot.length / 2) + 1 ? <img src='../../assets/bomb.png' alt="bomb_image"></img> : (time > 2000 || (correctDot[index] > threshold || clickedStates[index]) ? '' : correctDot[index])} */}
-          { time > 2000 || (correctDot[index] > threshold || clickedStates[index]) ?  (correctDot[index] > threshold || clickedStates[index]) ?  "": <img src='src\assets\bomb.png' alt="bomb_image" width="50px"></img>: (correctDot[index]  > Math.floor(correctDot.length / 2) + 1 ? <img src='src\assets\explosion.png' alt="bomb_image" width="50px"></img> : correctDot[index] )}
+          {/* {correctDot[index]  > Math.floor(correctDot.length / 3) + 1 ? <img src='../../assets/bomb.png' alt="bomb_image"></img> : (time > 2000 || (correctDot[index] > threshold || clickedStates[index]) ? '' : correctDot[index])} */}
+          { time > 2000 || (correctDot[index] > threshold || clickedStates[index]) ?  (correctDot[index] > threshold || clickedStates[index]) ?  "": <img src='src\assets\bomb.png' alt="bomb_image" width="50px"></img>: (correctDot[index]  > Math.floor(game.getCurrentLevel()*2 -Math.floor(game.getCurrentLevel()**0.5)+1) ? <img src='src\assets\explosion.png' alt="bomb_image" width="50px"></img> : correctDot[index] )}
 
 
         </div>

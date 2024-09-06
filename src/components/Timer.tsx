@@ -18,7 +18,6 @@ const Timer: React.FC<{time: number}> = ({ time }) => {
         const milliseconds = time % 1000;
 
         return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(3, '0')}`;
-        // return `${String(milliseconds).padStart(10, '0')}`;
     };
     
 
