@@ -12,7 +12,8 @@ export default function ChannelDropdown({
     onChange: (val: string) => void
 }){
     return(
-        <FormControl fullWidth>
+        <FormControl fullWidth sx ={{ backgroundColor: 'white' ,
+        borderRadius: '20px'}}>
             <InputLabel>Channel</InputLabel>
             <Select
                 value={channelName}

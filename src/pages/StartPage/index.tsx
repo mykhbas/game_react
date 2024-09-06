@@ -16,7 +16,7 @@ const StartPage = () => {
     const bgSong = useMemo(() => {
         return 'https://youtu.be/fmHOqoDeiDg?si=aG2wKTBpd5XH09Ki'
     }, [])
-    
+
     useEffect(() => {
         // TO DO.
         const GetAllListsChannel = async () => {
@@ -69,9 +69,9 @@ const StartPage = () => {
     return (
         <Box  >
             <BackgroundMusic songUrl={bgSong} />
-            <Grid container justifyContent={"center"}>
-                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} sx={{ marginBottom: '0px' }}>
-                    <Box component="img"  src={Logo} sx={{marginTop: '0px'}}></Box>
+            <Grid container justifyContent={"center"} sx={{ border: '3px solid #FFC300', borderRadius: '50px' }}>
+                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} sx={{ marginBottom: '0px'}}>
+                    <Box component="img" src={Logo} sx={{ marginTop: '0px' }}></Box>
                 </Grid>
                 <Grid container item xl={12} lg={12} md={12} sm={12} xs={12} p={2} justifyContent="center">
                     {/*<Typography variant="h1"
@@ -100,7 +100,7 @@ const StartPage = () => {
                         </text>
                     </svg>
 
-                    <Grid sx={{ backgroundColor: '#fff', p: 5 ,borderRadius: '40px'}} >
+                    <Grid sx={{ backgroundColor: '#573f20', p: 5, borderRadius: '40px' }} >
                         {/*TO DO: Create dropdown for show channel list */}
                         <ChannelDropdown
                             appNameLists={appNameLists}
@@ -110,7 +110,7 @@ const StartPage = () => {
                             }}
 
                         />
-                        <FormControl fullWidth sx={{ mt: 1 }}>
+                        <FormControl fullWidth sx={{ mt: 1, backgroundColor: 'white', borderRadius: '20px' }}>
                             {/* Create textfield for input channel name that need to create new. */}
                             <TextField
                                 label="create new channel"
@@ -126,8 +126,9 @@ const StartPage = () => {
 
                         <Button variant="outlined"
                             style={{
-                                borderColor: 'brown',
-                                color: 'brown'
+
+                                borderColor: 'white',
+                                color: 'white'
                             }} sx={{ mt: "15px" }} onClick={() => {
                                 if (newChannelName !== "") {
                                     setAppNameLists(p => {
@@ -145,7 +146,10 @@ const StartPage = () => {
                             }}>Create new channel</Button>
 
                         <Grid item xl={12} lg={12} md={12} sm={12} xs={12} p={0}>
-                            <FormControl fullWidth sx={{ mt: 5 }}>
+                            <FormControl fullWidth sx={{
+                                mt: 5, backgroundColor: 'white',
+                                borderRadius: '20px'
+                            }} >
                                 <TextField
                                     label="player name"
                                     variant="outlined"
