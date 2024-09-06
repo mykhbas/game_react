@@ -73,11 +73,11 @@ const MainPage = () => {
     const getBackgroundColor = () => {
         switch (location.pathname) {
             case '/':
-                return '#ece4d4';
+                return '#c5d6ba';
             case '/game':
                 return '#44140c';
             case '/score':
-                return '#f5eed8';
+                return '#d3ad79';
             default:
                 return 'white'; // กรณีเส้นทางอื่นๆ ที่ไม่ตรงกับข้างบน
         }
